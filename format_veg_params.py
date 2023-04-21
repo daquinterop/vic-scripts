@@ -149,8 +149,8 @@ def format_veg_params(basinMask,lcData,outVeg,scheme='IGBP'):
 if __name__ == "__main__":
     INPUT_PATH = '/home/diego/vic-southeastern-us/data/input'
     format_veg_params(
-        os.path.join(INPUT_PATH, 'gis', 'grid-al_ga.tif'), 
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-lc-igbp.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'grid-sample.tif'), 
+        os.path.join(INPUT_PATH, 'gis', 'sample-lc-igbp.tif'),
         os.path.join(INPUT_PATH, 'veg.param'),
         'IGBP'
         )

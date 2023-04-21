@@ -61,10 +61,12 @@ def format_meteo_forcing(basin_mask, inpath, outpath, startyr, endyr):
 
     del ds
     del b1
-    lons = np.linspace(lon0, lon1, data.shape[1])
-    lats = np.linspace(lat0, lat1, data.shape[0])
+    # lons = np.linspace(lon0, lon1, data.shape[1])
+    # lats = np.linspace(lat0, lat1, data.shape[0])
+    lons = [gt[0]+gt[1]/2 + i*gt[1] for i in range(data.shape[1])]
+    lats = [gt[3]-gt[5]/2 + i*gt[5] for i in range(data.shape[0])]
     xx, yy = np.meshgrid(lons, lats)
-    yy = np.flipud(yy)
+    # yy = np.flipud(yy)
     mask = data.astype(uint8)
     mask = np.ma.masked_where(mask!=1,mask)
     dates = [datetime(startyr, 1, 1)]
@@ -80,7 +82,7 @@ def format_meteo_forcing(basin_mask, inpath, outpath, startyr, endyr):
             mode = 'w'
         else:
             mode = 'a'
-        dates_year = sorted(filter(lambda x: x.year == 2010, dates))
+        dates_year = sorted(filter(lambda x: x.year == year, dates))
         # dates_year = sorted(dates)
         # Open netCDF Datasets for the year
         nc_datasets = {}
@@ -118,7 +120,7 @@ def format_meteo_forcing(basin_mask, inpath, outpath, startyr, endyr):
 if __name__ == "__main__":
     INPUT_PATH = '/home/diego/vic-southeastern-us/data/input'
     format_meteo_forcing(
-        os.path.join(INPUT_PATH, 'gis', 'grid-al_ga.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'grid-sample.tif'),
         os.path.join(INPUT_PATH, 'weather'),
         os.path.join(INPUT_PATH, 'forcing'),
         2010, 2021

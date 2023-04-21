@@ -95,18 +95,18 @@ if __name__ == "__main__":
     WD = '/home/diego/vic-southeastern-us/data/input/gis'
     os.chdir(WD)
     ARGS = [
-        ('srtm-southeastern-us-500m-filled.tif', 'al_ga-strm-snap.tif', 
-         'grid-al_ga.tif', True, 'bilinear'),
-        ('srtm-southeastern-us-500m-filled.tif', 'al_ga-strm-avg.tif', 
-         'grid-al_ga.tif', False, 'bilinear'),
-        ('slope-southeastern-us-500m.tif', 'al_ga-slope-avg.tif', 
-         'grid-al_ga.tif', False, 'mean'),
-        ('modis-lc-southeastern-us.tif', 'al_ga-lc-igbp.tif', 
-         'grid-al_ga.tif', True, 'nearest'),
-        ('hswd-southeastern-us.tif', 'al_ga-soils-agg.tif', 
-         'grid-al_ga.tif', False, 'mode'),
-        ('precip.tif', 'al_ga-precip-snap.tif', 
-         'grid-al_ga.tif', False, 'mode'),
+        ('srtm-southeastern-us-500m-filled.tif', 'sample-strm-snap.tif', 
+         'grid-sample.tif', True, 'bilinear'),
+        ('srtm-southeastern-us-500m-filled.tif', 'sample-strm-avg.tif', 
+         'grid-sample.tif', False, 'bilinear'),
+        ('slope-southeastern-us-500m.tif', 'sample-slope-avg.tif', 
+         'grid-sample.tif', False, 'mean'),
+        ('modis-lc-southeastern-us.tif', 'sample-lc-igbp.tif', 
+         'grid-sample.tif', True, 'nearest'),
+        ('hswd-southeastern-us.tif', 'sample-soils-agg.tif', 
+         'grid-sample.tif', False, 'mode'),
+        ('precip.tif', 'sample-precip-snap.tif', 
+         'grid-sample.tif', False, 'mode'),
     ]
     for args in ARGS:
         snap_raster(*args)

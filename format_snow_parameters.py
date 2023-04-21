@@ -155,8 +155,8 @@ def format_snow_params(basinMask, elvHiRes, outSnow, interval):
 if __name__ == "__main__":
     INPUT_PATH = '/home/diego/vic-southeastern-us/data/input'
     format_snow_params(
-        os.path.join(INPUT_PATH, 'gis', 'grid-al_ga.tif'), 
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-strm-snap.tif'), 
+        os.path.join(INPUT_PATH, 'gis', 'grid-sample.tif'), 
+        os.path.join(INPUT_PATH, 'gis', 'sample-strm-snap.tif'), 
         os.path.join(INPUT_PATH, 'snow.param'), 
-        100
+        5
 )

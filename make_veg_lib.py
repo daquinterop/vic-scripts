@@ -168,7 +168,7 @@ def make_veg_lib(LCFile, LAIFolder, ALBFolder, outVeg, scheme='IGBP'):
 if __name__ == "__main__":
     INPUT_PATH = '/home/diego/vic-southeastern-us/data/input'
     make_veg_lib(
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-lc-igbp.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'sample-lc-igbp.tif'),
         os.path.join(INPUT_PATH, 'ndvi_al-ga'),
         os.path.join(INPUT_PATH, 'albedo_al-ga'),
         os.path.join(INPUT_PATH, 'veg.lib'),

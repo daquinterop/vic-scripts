@@ -74,7 +74,7 @@ def create_grid(baseShape, outputGrid, gridSize):
 # Execute the main level program if run as standalone
 if __name__ == "__main__":
     create_grid(
-        '/home/diego/vic-southeastern-us/data/shapefiles/alabama-georgie.shp',
-        '/home/diego/vic-southeastern-us/data/input/gis/grid-al_ga.tif',
+        '/home/diego/vic-southeastern-us/data/shapefiles/sample_watershed.shp',
+        '/home/diego/vic-southeastern-us/data/input/gis/grid-sample.tif',
         0.05
-        )
+    )

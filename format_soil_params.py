@@ -136,9 +136,10 @@ def format_soil_params(basinMask,HWSD,basinElv,AnnPrecip,Slope,outsoil,
                 gt = ds.GetGeoTransform()
                 # define raster bounding box
                 lon0 = gt[0] + (gt[1] / 2.)
-                lon1 = gt[0] + (data.shape[1]*gt[1])
-                lat0 = gt[3] + (data.shape[0]*gt[-1])
-                lat1 = gt[3] + (gt[-1] /2)
+                lon1 = lon0 + (data.shape[1]*gt[1])
+                lat1 = gt[3] + (gt[-1]/2)
+                lat0 = lat1 + (data.shape[0]*gt[-1])
+                
 
             # get the no data value
             if i == 2:
@@ -156,12 +157,14 @@ def format_soil_params(basinMask,HWSD,basinElv,AnnPrecip,Slope,outsoil,
         raise IOError('Raster file input error, check that all paths are correct')
 
     # create arrays for all lat/lon points
-    lons = np.linspace(lon0,lon1,data.shape[1])
-    lats = np.linspace(lat0,lat1,data.shape[0])
+    # lons = np.linspace(lon0,lon1,data.shape[1])
+    # lats = np.linspace(lat0,lat1,data.shape[0])
+    lons = [gt[0]+gt[1]/2 + i*gt[1] for i in range(data.shape[1])]
+    lats = [gt[3]-gt[5]/2 + i*gt[5] for i in range(data.shape[0])]
 
     # mesh the lat/lon points
     xx,yy = np.meshgrid(lons,lats)
-    yy = np.flipud(yy) # invert the lat
+    # yy = np.flipud(yy) # invert the lat
 
     # define the path to the output soil parameter file
     soilfile = os.path.join(__location__,outsoil)
@@ -292,11 +295,11 @@ def format_soil_params(basinMask,HWSD,basinElv,AnnPrecip,Slope,outsoil,
 if __name__ == "__main__":
     INPUT_PATH = '/home/diego/vic-southeastern-us/data/input'
     format_soil_params(
-        os.path.join(INPUT_PATH, 'gis', 'grid-al_ga.tif'), 
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-soils-agg.tif'), 
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-strm-avg.tif'),
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-precip-snap.tif'),
-        os.path.join(INPUT_PATH, 'gis', 'al_ga-slope-avg.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'grid-sample.tif'), 
+        os.path.join(INPUT_PATH, 'gis', 'sample-soils-agg.tif'), 
+        os.path.join(INPUT_PATH, 'gis', 'sample-strm-avg.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'sample-precip-snap.tif'),
+        os.path.join(INPUT_PATH, 'gis', 'sample-slope-avg.tif'),
         os.path.join(INPUT_PATH, 'soil.param'), 
         100
     )
